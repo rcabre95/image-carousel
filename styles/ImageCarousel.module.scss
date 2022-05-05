@@ -1,0 +1,81 @@
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+.imageCarousel {
+    width: 100%;
+    // min-width: 600px;
+    height: 82vh;
+    background-color: #43464b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .imageBox {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .mainPreview {
+            width: 75%;
+            height: 70%;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background: #f7f7f7;
+            border: 1px solid white;
+
+            .imageNavigation {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                @include flexCenter(row);
+                border-radius: 10px;
+                z-index: 2;
+            }
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        .imagePreviewBox {
+            height: 50px;
+            width: fit-content;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            max-width: 95%;
+            border: 1px solid white;
+
+            .imagePreview {
+                height: 100%;
+                width: auto;
+                transition: 315ms;
+                &:hover {
+                    opacity: 0.5;
+                }
+
+                img {
+                    height: 100%;
+                    width: auto;
+                    object-fit: cover;
+                }
+            }
+            .selectedPreview {
+                opacity: 0.5;
+            }
+        }
+    }
+}
