@@ -1,11 +1,19 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
 .header {
-    background-color: green;
+    background-color:#f7f7f7;
     height: 5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-family: 'Lato';
+    &:before {
+        font-family: 'Lato';
+    }
+    
+    &:after {
+        font-family: 'Lato';
+    }
 
     .main {
         margin-left: 1rem;
@@ -15,7 +23,7 @@
     .spacer {
         display: flex;
         flex: 1;
-        background-color: tan;
+        // background-color: tan;
     }
 
     .filter {
@@ -24,5 +32,9 @@
         flex-direction: row;
         width: 15rem;
         margin-right: 1rem;
+        
+        .formControl {
+            margin-right: 1rem;
+        }
     }
 }
