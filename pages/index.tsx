@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ImageCarousel from '../components/ImageCarousel'
-import { Button } from '@material-ui/core'
+import Header from '../components/Header'
 import styles from '../styles/Home.module.scss'
 import axios from 'axios'
 
@@ -12,11 +12,18 @@ interface ICatObj {
   height: number;
 }
 
+interface ICategories {
+  id: number;
+  name: string
+}
+
 interface IHomeProps {
 
 }
 
 interface IHomeState {
+  categories: ICategories[]
+  category: number;
   catURLs: any[];
 }
 
@@ -25,17 +32,26 @@ class Home extends Component<IHomeProps, IHomeState> {
     super(props);
 
     this.state = {
+      categories: [],
+      category: 0,
       catURLs: []
     }
 
     this.getCats = this.getCats.bind(this)
+    this.changeCategory = this.changeCategory.bind(this)
   }
 
+  changeCategory(e: any) {
+    this.setState({
+      category: e.target.value
+    })
+  }
 
   getCats() {
     axios.get(`https://api.thecatapi.com/v1/images/search`, {
       params: {
         limit: 10,
+        category_ids: this.state.category == 0 ? "" : this.state.category,
         "api-key": process.env.NEXT_PUBLIC_CAT_KEY
       }
     })
@@ -66,15 +82,29 @@ class Home extends Component<IHomeProps, IHomeState> {
         this.setState({
           catURLs: catURLArray
         })
+      });
+
+      axios.get(`https://api.thecatapi.com/v1/categories`, {
+        params: {
+          "api-key": process.env.NEXT_PUBLIC_CAT_KEY
+        }
       })
+        .then(res => {
+          this.setState({
+            categories: res.data
+          }, () => { console.log(this.state.categories) })
+        })
   }
   render() {
     return (
       <div className={styles.home}>
+        <Header
+          categories={this.state.categories}
+          category={this.state.category}
+          changeCategory={this.changeCategory}
+          getCats={this.getCats}
+        />
         <ImageCarousel ids={this.state.catURLs}/>
-        <div className={styles.buttonSection}>
-          <Button variant="contained" color="primary" type="button" onClick={this.getCats}>Get more cats!</Button>
-        </div>
       </div>
     )
   }

@@ -1,0 +1,28 @@
+
+
+.header {
+    background-color: green;
+    height: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .main {
+        margin-left: 1rem;
+    }
+    
+
+    .spacer {
+        display: flex;
+        flex: 1;
+        background-color: tan;
+    }
+
+    .filter {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 15rem;
+        margin-right: 1rem;
+    }
+}
