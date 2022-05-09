@@ -22,6 +22,7 @@ interface IHomeProps {
 }
 
 interface IHomeState {
+  includeGifs: boolean;
   categories: ICategories[]
   category: number;
   catURLs: any[];
@@ -32,6 +33,7 @@ class Home extends Component<IHomeProps, IHomeState> {
     super(props);
 
     this.state = {
+      includeGifs: true,
       categories: [],
       category: 0,
       catURLs: []
@@ -39,6 +41,13 @@ class Home extends Component<IHomeProps, IHomeState> {
 
     this.getCats = this.getCats.bind(this)
     this.changeCategory = this.changeCategory.bind(this)
+    this.handleCheckbox = this.handleCheckbox.bind(this)
+  }
+
+  handleCheckbox() {
+    this.setState({
+      includeGifs: !this.state.includeGifs
+    })
   }
 
   changeCategory(e: any) {
@@ -50,9 +59,10 @@ class Home extends Component<IHomeProps, IHomeState> {
   getCats() {
     axios.get(`https://api.thecatapi.com/v1/images/search`, {
       params: {
+        "api-key": process.env.NEXT_PUBLIC_CAT_KEY,
         limit: 10,
         category_ids: this.state.category == 0 ? "" : this.state.category,
-        "api-key": process.env.NEXT_PUBLIC_CAT_KEY
+        mime_types: this.state.includeGifs ? "" : "jpg,png"
       }
     })
       .then(res => {
@@ -92,13 +102,15 @@ class Home extends Component<IHomeProps, IHomeState> {
         .then(res => {
           this.setState({
             categories: res.data
-          }, () => { console.log(this.state.categories) })
+          })
         })
   }
   render() {
     return (
       <div className={styles.home}>
         <Header
+          handleCheckbox={this.handleCheckbox}
+          includeGifs={this.state.includeGifs}
           categories={this.state.categories}
           category={this.state.category}
           changeCategory={this.changeCategory}

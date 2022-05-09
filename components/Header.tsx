@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import styles from '../styles/Header.module.scss'
-import { Button, MenuItem, InputLabel, FormHelperText, FormControl, Select } from '@material-ui/core'
+import { Button, MenuItem, InputLabel, FormHelperText, FormControl, Select, FormControlLabel, Checkbox } from '@material-ui/core'
 
 interface IHeaderProps {
+    includeGifs: boolean;
     categories: any[];
     category: number;
     getCats: () => void;
     changeCategory: (e: any) => void;
+    handleCheckbox: () => void;
 }
 
 interface IHeaderState {
@@ -35,7 +37,7 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                 </div>
                 <div className={styles.spacer}></div>
                 <div className={styles.filter}>
-                    <FormControl variant="outlined" className={styles.formControl}>
+                    <FormControl variant="outlined" color="primary" className={styles.formControl}>
                         <InputLabel id="categoryid">Category</InputLabel>
                         <Select
                             labelId="categoryid"
@@ -53,6 +55,16 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                             
                         </Select>
                     </FormControl>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={this.props.includeGifs}
+                                onChange={this.props.handleCheckbox}
+                                color="primary"
+                            />
+                        }
+                        label="Include Gifs"
+                    />
                     <div className={styles.buttonSection}>
                         <Button variant="contained" color="primary" type="button" onClick={this.props.getCats}>Get more cats!</Button>
                     </div>

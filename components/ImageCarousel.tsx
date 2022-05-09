@@ -57,12 +57,11 @@ class ImageCarousel extends Component<IImageCarouselProps, IImageCarouselState> 
     handleImageSelect(e: any) {
         e.preventDefault();
         var targetID = e.target.id;
-        console.log(targetID);
-        // console.log(e.target)
+
         var targetIDIndex = this.props.ids.indexOf(targetID)
         this.setState({
             imageArrayIndex: targetIDIndex
-        }, () => { console.log(this.state.imageArrayIndex) })
+        })
     }
 
     render() {
