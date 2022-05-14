@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import ImageCarousel from '../components/ImageCarousel'
+import Head from 'next/head'
 import Header from '../components/Header'
+import ImageCarousel from '../components/ImageCarousel'
 import styles from '../styles/Home.module.scss'
 import axios from 'axios'
 
@@ -105,9 +106,13 @@ class Home extends Component<IHomeProps, IHomeState> {
           })
         })
   }
+
   render() {
     return (
       <div className={styles.home}>
+        <Head>
+          <title>10 Cats</title>
+        </Head>
         <Header
           handleCheckbox={this.handleCheckbox}
           includeGifs={this.state.includeGifs}
