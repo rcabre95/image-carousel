@@ -37,7 +37,7 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                 </div>
                 <div className={styles.spacer}></div>
                 <div className={styles.filter}>
-                    <FormControl variant="outlined" color="primary" className={styles.formControl}>
+                    {/* <FormControl variant="outlined" color="primary" className={styles.formControl}>
                         <InputLabel id="categoryid">Category</InputLabel>
                         <Select
                             labelId="categoryid"
@@ -54,7 +54,23 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                             }
                             
                         </Select>
-                    </FormControl>
+                    </FormControl> */}
+                    <div className={styles.categorySelection}>
+                        <label htmlFor="categoryId">CATegory:<br/></label>
+                        <select
+                        name="categories"
+                        id="categoryId"
+                        onChange={this.props.changeCategory}>
+                            <option value={0}>Any</option>
+                            {
+                                this.props.categories.map((catCategory) => (
+                                    <option value={catCategory.id}>
+                                        {this.capitalizeWord(catCategory.name)}
+                                    </option>
+                                ))
+                            }
+                        </select>
+                    </div>
                     <FormControlLabel
                         control={
                             <Checkbox
@@ -64,9 +80,18 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                             />
                         }
                         label="Include Gifs"
+                        className={styles.formCheckbox}
                     />
                     <div className={styles.buttonSection}>
-                        <Button variant="contained" color="primary" type="button" onClick={this.props.getCats}>Get more cats!</Button>
+                        <Button
+                        style={{
+                            height: "70%",
+                            width: "70%",
+                            fontSize: "0.7rem"
+                        }}
+                        variant="contained"
+                        color="primary" type="button"
+                        onClick={this.props.getCats}>Get more cats!</Button>
                     </div>
                 </div>
             </div>

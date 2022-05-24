@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
 .header {
     background-color:#f7f7f7;
+    width: 100%;
     height: 5rem;
     display: flex;
     flex-direction: row;
@@ -17,6 +25,8 @@
 
     .main {
         margin-left: 1rem;
+        margin-right: 2%;
+        font-size: 70%;
     }
     
 
@@ -34,9 +44,29 @@
         margin-right: 1rem;
         
         .formControl {
-            margin-right: 1rem;
-            width: 10rem;
-            
+            margin: 1rem;
+            width: fit-content;
+            max-width: 20%;
+            // overflow: hidden;
+            @media screen and (max-width: 500px) {
+                width: 20%;
+                // overflow: hidden;
+            }
         }
+        .categorySelection {
+            display: flex;
+            flex-direction: column;
+        }
+        .formCheckbox {
+            margin-left: 1rem;
+        }
+    }
+    .buttonSection {
+        width: 30%;
+        font-size: 10%;
+        height: 100%;
+        margin-left: 1rem;
+        // background-color: green;
+        @include flexCenter(column)
     }
 }
