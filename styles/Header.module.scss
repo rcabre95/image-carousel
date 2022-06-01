@@ -27,6 +27,8 @@
         margin-left: 1rem;
         margin-right: 2%;
         font-size: 70%;
+        // background-color: green;
+        @include flexCenter(column);
     }
     
 
