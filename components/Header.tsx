@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styles from '../styles/Header.module.scss'
-import { Button, MenuItem, InputLabel, FormHelperText, FormControl, Select, FormControlLabel, Checkbox } from '@material-ui/core'
+import { Button, FormControlLabel, Checkbox } from '@mui/material'
 
 interface IHeaderProps {
     includeGifs: boolean;
@@ -37,24 +37,6 @@ class Header extends Component<IHeaderProps, IHeaderState> {
                 </div>
                 <div className={styles.spacer}></div>
                 <div className={styles.filter}>
-                    {/* <FormControl variant="outlined" color="primary" className={styles.formControl}>
-                        <InputLabel id="categoryid">Category</InputLabel>
-                        <Select
-                            labelId="categoryid"
-                            id="category"
-                            value={this.props.category}
-                            onChange={this.props.changeCategory}
-                            label="Category"
-                        >
-                            <MenuItem value={0}>Any</MenuItem>
-                            {
-                                this.props.categories.map((catCategory) => (
-                                    <MenuItem value={catCategory.id}>{this.capitalizeWord(catCategory.name)}</MenuItem>
-                                ))
-                            }
-                            
-                        </Select>
-                    </FormControl> */}
                     <div className={styles.categorySelection}>
                         <label htmlFor="categoryId">CATegory:<br/></label>
                         <select

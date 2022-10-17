@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import styles from '../styles/ImageCarousel.module.scss';
-import { IconButton } from '@material-ui/core';
-import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
-import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
+import { IconButton } from '@mui/material';
+import ArrowForwardIosRoundedIcon from '@mui/icons-material/ArrowForwardIosRounded';
+import ArrowBackIosRoundedIcon from '@mui/icons-material/ArrowBackIosRounded';
+// import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
 // import { SDK } from '../../api-resources';
 
 interface IImageCarouselProps {
